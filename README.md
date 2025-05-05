@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This repository contains code for reproducing the paper ["Do We Still Need Clinical Language Models?"](https://arxiv.org/pdf/2302.08091) (Agrawal et al., 2023). The paper investigates whether general-domain language models (LMs) can match or exceed the performance of clinical-domain LMs on medical natural language processing tasks when trained with limited data.
+This repository contains code for reproducing the paper ["Do We Still Need Clinical Language Models?"](https://arxiv.org/pdf/2302.08091) (Lehman et al., 2023). The paper investigates whether general-domain language models (LMs) can match or exceed the performance of clinical-domain LMs on medical natural language processing tasks when trained with limited data.
 
 ## Overview
 
@@ -35,8 +35,8 @@ pip install -r requirements.txt
 
 1. Download the datasets from their original sources:
    - MedNLI: Available through [the MIMIC-III PhysioNet repository](https://physionet.org/content/mednli/1.0.0/) (requires credentialed access)
-   - RadQA: Available from [the authors' repository](https://github.com/abachaa/VQA-Med-2019)
-   - CLIP: Available from the [original paper's repository](https://github.com/clinicalml/clinical-longformer)
+   - RadQA: Available from [PhysioNet RadQA repository](https://physionet.org/content/radqa/1.0.0/)
+   - CLIP: Available from [PhysioNet MIMIC-III Clinical Action repository](https://physionet.org/content/mimic-iii-clinical-action/1.0.0/)
 
 2. Place the datasets in the following directory structure:
    ```
@@ -61,6 +61,33 @@ pip install -r requirements.txt
    python scripts/prepare_data.py
    ```
    This will create the various data splits (1%, 5%, 10%, 25%, 100%) used in the experiments.
+
+## Running Jupyter Notebooks Directly
+
+For a more interactive approach, you can directly run the Jupyter notebooks included in this repository. The notebooks provide a step-by-step implementation of the paper's experiments and include additional visualizations and analysis.
+
+### Notebook Structure
+
+- `dlh_project_phase_1.ipynb`: Environment setup and configuration
+- `dlh_project_phase_2.ipynb`: Dataset processing and preparation
+- `dlh_project_phase_3.ipynb`: Model management and configuration
+- `dlh_project_phase_4.ipynb` & `dlh_project_phase_5.ipynb`: Fine-tuning and in-context learning implementation
+- `dlh_project_phase_6.ipynb`: Evaluation and results analysis
+- `ablation.ipynb`: Ablation study with Longformer on MedNLI
+
+### Running the Notebooks
+
+```bash
+# Install Jupyter if needed
+pip install jupyter
+
+# Launch Jupyter notebook server
+jupyter notebook
+```
+
+Navigate to the notebook you wish to run and execute the cells in order. The notebooks are designed to be self-contained and include all necessary code for data processing, model training, and evaluation.
+
+For Google Colab users, the notebooks can also be uploaded and run directly in Colab. Make sure to follow the mounting instructions in the notebooks to access your data on Google Drive.
 
 ## Reproducing the Experiments
 
@@ -117,7 +144,7 @@ This will generate figures comparing the performance of different models across 
 - `src/training/`: Training pipelines and ICL implementations
 - `src/evaluation/`: Metrics and evaluation utilities
 - `scripts/`: Runnable scripts for experiments and analysis
-- `notebooks/`: Original Jupyter notebooks for reference
+- `notebooks/`: Jupyter notebooks for interactive experimentation
 
 ## Hyperparameters
 
@@ -152,9 +179,9 @@ The main hyperparameters used for fine-tuning:
 If you use this code, please cite both the original paper and this reproduction:
 
 ```bibtex
-@article{agrawal2023still,
+@article{lehman2023still,
   title={Do We Still Need Clinical Language Models?},
-  author={Agrawal, Monica and Adams, Griffin and Sontag, David and Rush, Alexander M},
+  author={Lehman, Eric and Hernandez, Edward and Mahajan, Diwakar and Wulff, Jonas and Smith, Michael J. and Ziegler, Zachary and Nadler, Daniel and Szolovits, Peter and Johnson, Alistair and Alsentzer, Emily},
   journal={arXiv preprint arXiv:2302.08091},
   year={2023}
 }
